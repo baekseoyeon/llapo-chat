@@ -97,7 +97,7 @@ LLaPo-base 조건에서는 동일한 흐름에서 성격 조절 기능만 제외
 ## Research context
 
 LLaPo-chat은 personality vector 기반 기술을 사용자 조절형 서비스로 확장한 프로젝트입니다.  
-기술 구현 자체는 별도 레포인 `personality-vector-llm-control`에서 다루고, 이 레포는 시스템 설계와 UX 검증에 집중합니다.
+기술 구현 자체는 별도 레포인 `llm-personality-vector-merging`에서 다루고, 이 레포는 시스템 설계와 UX 검증에 집중합니다.
 
 ## Thesis
 
