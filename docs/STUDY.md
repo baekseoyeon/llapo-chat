@@ -1,120 +1,118 @@
-## 설문 문항 구성
+# STUDY
 
-## 1. 설문 문항
+## Overview
 
-### Satisfaction (1–6)
-1. I feel satisfied while using LLaPo-chat.  
-2. I feel as if I am having an ongoing conversation through this interaction.  
-3. Overall, I am satisfied with my experience of using LLaPo-chat.  
-4. Using LLaPo-chat makes me feel good.  
-5. My experience with LLaPo-chat meets my needs well.  
-6. My experience with LLaPo-chat is close to my expectations.  
+이 문서는 LLaPo-chat의 사용자 실험 설계와 평가 구조를 정리합니다.
 
-### Enjoyment (7–15)
-7. I enjoy interacting with LLaPo-chat.  
-8. I find it interesting to interact with LLaPo-chat.  
-9. I found my interaction with LLaPo-chat enjoyable.  
-10. I feel entertained when I use LLaPo-chat.  
-11. I enjoy having conversations with LLaPo-chat.  
-12. I find conversations with LLaPo-chat enjoyable and pleasant.  
-13. I find conversations with LLaPo-chat fun.  
-14. Using LLaPo-chat feels interesting to me.  
-15. I feel a sense of entertainment when using LLaPo-chat.  
+실험의 목적은 사용자가 AI의 성격을 직접 조절할 수 있을 때, 그 조절 경험이 대화 UX에 어떤 영향을 주는지 확인하는 것입니다.
 
-### Perceived Control (16–33)
-16. I feel that LLaPo-chat reflects my intentions.  
-17. I feel that LLaPo-chat meets my expectations.  
-18. I feel that LLaPo-chat operates as I intend.  
-19. I feel that LLaPo-chat behaves in a predictable manner.  
-20. I became quickly familiar with adjusting LLaPo-chat’s personality.  
-21. I feel that the personality adjustment feature of LLaPo-chat is appropriate.  
-22. I am confident that I was able to adjust LLaPo-chat’s personality.  
-23. I feel that I control LLaPo-chat’s personality during the interaction.  
-24. I feel that the LLaPo-chat with the personality I adjusted is a good conversational partner.  
-25. I feel that LLaPo-chat supports me rather than interferes with me.  
-26. I feel that I am not in control of LLaPo-chat’s personality. (reverse)  
-27. I feel that LLaPo-chat’s personality suits me well.  
-28. I feel that the personality of LLaPo-chat differed from my expectations. (reverse)  
-29. The personality customization feature provides sufficient information.  
-30. The personality customization feature has no information missing.  
-31. Conversations with LLaPo-chat feel like talking to a real person.  
-32. LLaPo-chat exhibits a consistent, recognizable personality.  
-33. I can use LLaPo-chat for everyday tasks.  
+## Research questions
 
-Notes  
-- 역문항: 26, 28  
-- 설문 제시 방식(v1): 참가자에게는 만족/즐거움/통제감 같은 분류를 보여주지 않고, 번호만 연속으로 제시해 응답 편향을 줄인다.
-- Satisfaction & Enjoyment: 공통문항s
-- Perceived Control: LLaPo-chat 단독문항s
+이 실험은 다음 질문을 중심으로 설계했습니다.
 
----
-### 8/28: CloChat 참고 및 베이스라인 고민
-맥락  
-- CloChat은 GPT-4 기반으로, 프롬프트를 통해 페르소나를 커스터마이즈하는 방식으로 동작한다.  
-- CloChat에서는 참가자 32명, 1인당 총 12개의 대화 세션을 수행했다.  
-- CloChat 6세션 + ChatGPT 6세션 구조로 비교했다.
+- 사용자는 AI의 성격을 직접 조절했다는 감각을 느끼는가
+- 성격 조절 기능이 대화 만족도와 즐거움에 영향을 주는가
+- 동일한 백본 모델에서도 사용자 조절 기능 유무가 경험 차이를 만드는가
+- 사용자가 설정한 성격과 실제로 느낀 성격 사이에 어떤 관계가 나타나는가
 
-핵심 고민  
-- 페르소나/성격 커스터마이즈 연구에서 “무엇을 baseline으로 둘 것인가?”
+## Conditions
 
-후보안  
-1) 기본 모델(바닐라) 기반  
-- 성격 조절 UI 없음, 기본 어시스턴트 동작
+실험은 두 조건을 비교하는 방식으로 진행했습니다.
 
-2) 프롬프트 기반  
-- 모델은 동일하되 프롬프트로만 페르소나를 조절
+- **LLaPo-chat**  
+  사용자가 Big Five 성격을 직접 조절할 수 있는 조건
 
-3) 최종결정
-- LLaPo-base: 성격 조절 UI 없음, 모델 병합 없음  
-- LLaPo-chat: 사용자가 슬라이더로 성격을 조절하고, 병합을 통해 반영됨  
-- 추후 확장(선택): “프롬프트 기반 조절”을 제3조건으로 추가해 분리 효과를 재검증
+- **LLaPo-base**  
+  동일한 백본 모델을 사용하지만 성격 조절 기능은 제공하지 않는 조건
 
----
+두 조건은 가능한 한 같은 UI 흐름과 대화 구조를 유지하고, 성격 조절 기능 유무만 다르게 두었습니다.
 
-## 3. 참가자 조건 관련 메모
+## Participants
 
-### 9/30: 참가자 프로필 가정(초안)
-- 영어 구사가 자유로운 사용자  
-- LLM 사용 경험이 있는 사용자(예: ChatGPT)
+- 참가자 수: 30명
+- 실험 설계: within-subject
+- 각 참가자는 두 조건을 모두 경험
 
-사전 설문/인터뷰 아이디어(선택)  
-- 사용 경험(빈도/사용 맥락)  
-- 현재 LLM의 강점/약점 인식  
-- 페르소나 커스터마이즈에 대한 니즈/선호
+조건 순서에 따른 영향을 줄이기 위해 세션 순서는 counterbalanced 방식으로 운영했습니다.
 
----
+## Procedure
 
-## 4. 통제감(Perceived Control) 문항 구성 의도
+실험은 아래 순서로 진행했습니다.
 
-v1 통제감 문항이 커버하는 것  
-- 사용자의 의도 반영/기대 충족  
-- 예측 가능성, 일관된 성격 인지  
-- 조절 기능의 학습 용이성, 조절 자신감  
-- 상호작용에서의 지원성(방해 vs 지원)  
-- “사람과 대화하는 느낌”과 같은 자연스러움
+1. 실험 안내 및 동의
+2. 성격 조절 방식 설명
+3. 인터페이스 사용 방법 안내
+4. 첫 번째 조건 수행
+5. 세 개의 대화 토픽에 대해 세션 진행
+6. 사후 설문 응답
+7. 두 번째 조건 수행
+8. 동일한 흐름 반복
+9. 최종 종료
 
-운영 메모  
-- 참가자가 직접 성격을 설정한 조건에서는 주관적 편향 가능성이 있어, 대화 로그 기반의 별도 평가(annotator: 사람/LLM) 도입 가능성을 열어둔다.
+LLaPo-chat 조건에서는 성격 조절 후 병합 단계를 거쳐 대화를 진행했고,  
+LLaPo-base 조건에서는 동일한 흐름에서 성격 조절 기능만 제외했습니다.
 
----
+## Conversation setup
 
-## 5. 실험 전 설명
+- 토픽 수: 3개
+- 토픽당 대화 시간: 5분
+- 토픽 유형: 일상적이고 자유로운 대화 주제
 
-### 10/10: 성격 조절 기능 안내
-- 이 실험에서 참가자는 대화형 AI의 “대화 스타일”을 직접 조절할 수 있다.  
-- 조절은 한 가지 성향만 강하게 주는 방식도 가능하고, 여러 성향을 적당히 섞는 방식도 가능하다.  
-- 조절 결과는 대화 중 말투, 반응 방식, 대화 전개 스타일에 영향을 준다.  
-- 중요한 점은 “정답을 맞히는 능력”을 바꾸는 것이 아니라, “대화하는 방식”을 바꾸는 실험이라는 것이다.  
-- 참가자는 대화 중 언제든지 초기화(Reset) 후 다시 조절할 수 있으며, 이는 “내가 원하는 스타일로 바뀌었는지”를 확인하기 위한 과정이다.
+대화 주제는 정답 정확도보다 대화 방식 차이가 드러나기 쉬운 맥락을 기준으로 구성했습니다.
 
----
+## Measures
 
-## 6. 포인트 시스템 및 설문 UX 운영 메모
+실험에서는 다음 세 가지 측면을 중심으로 평가했습니다.
 
-### 10/11: 포인트 시스템(운영)
-- UI에서 사용자는 제한된 포인트 안에서 성격을 분배해 조절한다.  
-- 내부적으로는 포인트가 계수로 변환되어 병합에 사용된다.
+- **Satisfaction**
+- **Enjoyment**
+- **User-control**
 
-설문 운영 단순화
-- LLaPo-base 이후 설문에서는 참가자 번호/나이/성별 같은 정보는 재수집하지 않는다.  
-- 최종 설문은 문항 분류 라벨 없이 번호만 연속 제시한다.
+Satisfaction과 Enjoyment는 두 조건 모두에서 측정했고,  
+User-control은 성격 조절 기능이 있는 LLaPo-chat 조건에서 중심적으로 확인했습니다.
+
+또한 필요 시 사용자가 조절한 값과 실제로 지각한 성격 사이의 관계를 함께 살펴볼 수 있도록 기록 구조를 설계했습니다.
+
+전체 설문 문항은 `docs/SURVEY.md`에서 다룹니다.
+
+## Why this design
+
+이 실험은 성격 제어 기술의 성능 자체를 평가하기보다,  
+사용자에게 조절 권한을 주는 인터페이스가 실제 경험에 어떤 변화를 만드는지 보기 위해 설계했습니다.
+
+따라서 비교 조건은 모델 자체를 크게 바꾸기보다,  
+동일한 백본 모델에서 성격 조절 기능 유무만 차이가 나도록 구성했습니다.
+
+이 방식은 다음을 보기 위해 적합합니다.
+
+- 사용자가 조절 기능을 실제로 인식하는지
+- 조절 기능이 경험 가치에 영향을 주는지
+- 기술 차이보다 인터페이스 차이가 어떤 효과를 만드는지
+
+## Logging
+
+실험 중에는 사용자 흐름과 대화 과정을 확인할 수 있도록 다음 정보를 기록할 수 있게 구성했습니다.
+
+- phase 정보
+- scenario 또는 topic 정보
+- personality setting 값
+- 대화 메시지
+- timestamp
+- reset 이벤트
+- 설문 응답
+
+이 기록은 실험 운영 안정성 확인과 사후 분석을 위한 기반으로 사용했습니다.
+
+## Ethics
+
+본 사용자 연구는 IRB 승인 후 진행되었으며, 참가자 동의를 바탕으로 데이터를 수집했습니다.
+
+## Summary
+
+LLaPo-chat의 사용자 실험은 다음을 확인하기 위해 설계되었습니다.
+
+- AI 성격 조절 기능이 실제로 사용자에게 통제감으로 인식되는지
+- 조절 기능이 대화 만족도와 즐거움에 영향을 주는지
+- 동일한 모델에서도 사용자 조절 인터페이스가 경험 차이를 만들 수 있는지
+
+이 문서는 실험의 전체 구조를 간단히 정리한 버전이며, 상세 구현과 시스템 흐름은 `docs/PROJECT.md`에서 다룹니다.
