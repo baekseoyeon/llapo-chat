@@ -54,6 +54,9 @@ LLaPo-chat은 다음 흐름으로 동작합니다.
 
 ## Experimental setup
 
+- `LLaPo-chat`: 사용자가 Big Five 성격을 직접 조절할 수 있는 조건
+- `LLaPo-base`: 동일한 백본 모델을 사용하지만 성격 조절 기능은 제공하지 않는 조건
+
 - 비교 조건: `LLaPo-chat` vs. `LLaPo-base`
 - 참가자: 30명
 - 설계: within-subject
@@ -90,13 +93,6 @@ LLaPo-base 조건에서는 동일한 흐름에서 성격 조절 기능만 제외
 
 - `docs/`  
   PRD 및 실험 설계 문서
-
-## Recommended entry points
-
-1. `README.md`
-2. `image/LLaPo-chat-main.png`
-3. `image/llapo-chat-flow.png`
-4. `docs/PRDv3_최종.md`
 
 ## Research context
 
