@@ -91,8 +91,14 @@ LLaPo-base 조건에서는 동일한 흐름에서 성격 조절 기능만 제외
 - `image/`  
   시스템 화면 및 설명 이미지
 
-- `docs/`  
-  PRD 및 실험 설계 문서
+- `docs/PROJECT.md`  
+  시스템 목적, 구조, 기능, 사용자 흐름 정리
+
+- `docs/STUDY.md`  
+  사용자 실험 설계와 평가 구조 정리
+  
+- `docs/SURVEY.md`  
+  사용자 실험 설문 구성 정리
 
 ## Research context
 
@@ -104,6 +110,7 @@ LLaPo-chat은 personality vector 기반 기술을 사용자 조절형 서비스�
 **One Model Fits You: Controlling Large Language Models through Personality Vector Merging**  
 Master’s thesis, Sungkyunkwan University  
 [dCollection record](https://dcollection.skku.edu/srch/srchDetail/000000189028?searchWhere1=all&insCode=211040&searchKeyWord1=ONE+MODEL+FITS+YOU&treePageNum=1&query=%2B%28%2B%28all%3Aone%2Bmodel%2Bfits%2Byou%29%29&navigationSize=10&start=0&pageSize=10&searthTotalPage=0&rows=10&ajax=false&pageNum=1&searchText=%5B%EC%A0%84%EC%B2%B4%3AONE+MODEL+FITS+YOU%5D&sortField=score&searchTotalCount=0&sortDir=desc)
+
 이 레포는 해당 학위논문의 시스템 설계와 사용자 실험 관련 내용을 정리한 저장소입니다.
 
 ## Related technical paper
