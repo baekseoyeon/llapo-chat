@@ -101,7 +101,10 @@ LLaPo-chat은 personality vector 기반 기술을 사용자 조절형 서비스�
 
 ## Thesis
 
-**One Model Fits You: Controlling Large Language Models through Personality Vector Merging**
+**One Model Fits You: Controlling Large Language Models through Personality Vector Merging**  
+Master’s thesis, Sungkyunkwan University  
+[dCollection record](https://dcollection.skku.edu/srch/srchDetail/000000189028?searchWhere1=all&insCode=211040&searchKeyWord1=ONE+MODEL+FITS+YOU&treePageNum=1&query=%2B%28%2B%28all%3Aone%2Bmodel%2Bfits%2Byou%29%29&navigationSize=10&start=0&pageSize=10&searthTotalPage=0&rows=10&ajax=false&pageNum=1&searchText=%5B%EC%A0%84%EC%B2%B4%3AONE+MODEL+FITS+YOU%5D&sortField=score&searchTotalCount=0&sortDir=desc)
+이 레포는 해당 학위논문의 시스템 설계와 사용자 실험 관련 내용을 정리한 저장소입니다.
 
 ## Related technical paper
 
