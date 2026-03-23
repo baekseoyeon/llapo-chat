@@ -1,72 +1,114 @@
-# LLaPo-chat: 슬라이더를 통한 AI 성격 부여 기반의 사용자 중심 Chatbot 시스템
-### LLaPo-chat: Slider-based Personality Control for LLM Chatbots
+# LLaPo-chat (사용자 조절형 AI 성격 챗봇)
+
 <p align="center">
   <img src="image/LLaPo-chat-main.png" width="800" alt="LLaPo-chat Overview" />
 </p>
 
-### Paper
-One Model Fits You: Personality Customization in LLM-based Chatbots via Model Merging (CHI 2026 투고중)
+사용자가 슬라이더로 AI의 성격을 조절하고, 그 조절 경험이 대화 UX에 어떤 영향을 주는지 검증한 사용자 중심 챗봇 시스템입니다.
 
----
+## Overview
 
-### LLaPo-chat Project
-> 사용자가 슬라이더로 LLM의 Big Five 성격(방향/강도/조합)을 조절하고 그 “통제감(User-control)”이 대화 UX(특히 Enjoyment)에 미치는 영향을 검증한 대화형 AI 개인화 제어 시스템입니다.
+LLaPo-chat은 Personality Vector Merging 기반 성격 제어 기술을 사용자 인터페이스로 확장한 시스템입니다.  
+사용자는 Big Five 성격 축을 조절한 뒤, 적용된 성격으로 챗봇과 대화할 수 있습니다.
 
----
-## 1. 문제 정의
-Problem
-대화형 AI는 답변 품질이 좋아도 사용자가 원하는 말투/성격/대화 스타일을 일관되게 통제하기 어렵습니다.  
-특히 “내가 조절했다”는 감각(통제감)이 약하면 재미/몰입 같은 경험 가치가 떨어질 수 있습니다.
+이 레포는 기술 자체보다 다음 질문에 초점을 둡니다.
 
----
-## 2. 해결 전략
-Approach
-### 1) 모델 수준 성격 제어: Personality Vector + Scaling + Multi-trait Merge
-- 각 성격 조건 p에 대해 fine-tuning으로 얻은 personality vector ϕp를 정의하고 사용자가 고른 강도를 scaling coefficient로 반영합니다. 
-- 최종 적용은 다음 형태의 합성으로 구현됩니다:  
-  **θ′ = θbase + Σ cp ϕp** (multi-trait composition)
-* Repository:[ Scalable-Personality-Control-Architecture-for-LLM-based-AI-Agents](https://github.com/baekseoyeon/Scalable-Personality-Control-Architecture-for-LLM-based-AI-Agents)를 참고해주세요!
-* paper: [![arXiv](https://img.shields.io/badge/arXiv-2509.19727-b31b1b.svg)](https://arxiv.org/abs/2509.19727)
+- 사용자가 AI의 성격을 직접 조절할 수 있는가
+- 조절 경험이 만족도, 즐거움, 통제감에 어떤 영향을 주는가
+- 고정형 모델보다 사용자 조절형 모델이 더 나은 경험을 만드는가
 
-### 2) 사용자 통제 UX: Slider → Merge → Chat → Reset/Survey
+## What this repository covers
+
+- slider 기반 성격 조절 인터페이스
+- merge → conversation → reset/survey 흐름
+- LLaPo-chat vs. LLaPo-base 비교 구조
+- 사용자 실험 절차 및 UX 평가 설계
+- 서비스 관점의 personality control system 구현
+
+## System flow
+
 <p align="center">
-  <img src="image/llapo_chat_flow.png" width="800" alt="LLaPo-chat Overview" />
+  <img src="image/llapo-chat-flow.png" width="800" alt="LLaPo-chat flow" />
 </p>
 
-- LLaPo-chat은 (a) 성격 조절 (b) 머지 (c) 대화 단계로 구성됩니다.
-- 사용자는 언제든지 부여한 성격을 변경 및 리셋 가능합니다.
-- 리셋 시점에 “내가 실제로 느낀 성격”을 기록해 조절-인지 정합성(사용자가 부여한 성격 vs 사용자가 실제로 느낀 성격) 분석이 가능하도록 설계했습니다.
+LLaPo-chat은 다음 흐름으로 동작합니다.
 
-### 3) A/B 비교 구조: LLaPo-chat vs LLaPo-base
-- **LLaPo-chat**: 사용자 선택에 따라 1개 이상 personality vector를 머지해 성격 조절 가능
-- **LLaPo-base**: 동일 백본이지만 성격 조절 기능 없음
+1. 사용자가 Big Five trait를 슬라이더로 조절
+2. 선택된 성격 벡터를 모델에 병합
+3. 적용된 성격으로 챗봇과 대화
+4. 필요 시 reset 후, 사용자가 실제로 느낀 성격과 경험을 기록
 
----
+이 구조를 통해 사용자가 설정한 성격과 실제 체감한 성격 사이의 관계를 함께 관찰할 수 있도록 설계했습니다.
 
-## Validation
-- 참가자 **30명**, **within-subject**로 두 조건(LLaPo-chat/base) 모두 경험 
-- 세션 구성: **3개 토픽 × 각 5분 대화**, 토픽 라운드별 로그 저장
-- 설문: Satisfaction(1–6), Enjoyment(7–15), User-control(16–33) 측정
+## Control design
 
----
+성격 조절은 Big Five 각 trait에 대한 슬라이더 입력을 기반으로 이루어집니다.  
+각 trait에는 정해진 포인트를 부여할 수 있으며, 전체 설정은 제한된 예산 안에서 조합되도록 설계했습니다.
 
-## Results
-- 15개 공통 문항 평균에서 **LLaPo-chat이 LLaPo-base보다 높음** (5.044 vs 4.360, p=0.015)
-- 세부적으로는 **Enjoyment가 유의미하게 증가** (p=0.002), Satisfaction은 유의미 차이 없음(p=0.174)
+이 방식은 두 가지 목적을 가집니다.
 
----
+- 사용자가 여러 성격 trait를 직접 조합할 수 있도록 함
+- 실험 조건이 지나치게 분산되지 않도록 설정 범위를 일정하게 유지함
 
-## Product takeaways
-- “성격을 조절할 수 있다”는 기능 자체가 경험 가치(Enjoyment)를 올릴 수 있음
-- 동일 백본/유사 구현에서 사용자 통제 UX가 체감 가치를 바꿀 수 있음
+슬라이더 입력은 모델 병합 계수로 선형 매핑되어 대화 전에 반영됩니다.
 
----
+## Experimental setup
 
-## 리포 구조
-Structure
+- 비교 조건: `LLaPo-chat` vs. `LLaPo-base`
+- 참가자: 30명
+- 설계: within-subject
+- 대화 세션: 3개 주제, 각 5분
+- 측정 항목: Satisfaction, Enjoyment, User-control
 
-- `image/` : 아키텍처 이미지  
-- `docs/` : 기획 문서
- - `docs/PRDv3_최종.md` ： 최종 PRD 문서
+## Study procedure
 
----
+실험은 오리엔테이션 이후 두 조건을 모두 경험하는 방식으로 진행했습니다.
+
+- Big Five 설명 및 사용 방법 안내
+- 튜토리얼 진행
+- `LLaPo-chat` / `LLaPo-base` 세션 수행
+- 각 세션에서 3개 주제에 대해 대화
+- 세션 종료 후 사후 설문 응답
+
+LLaPo-chat 조건에서는 성격 조절과 병합 단계를 거친 뒤 대화를 진행했고,  
+LLaPo-base 조건에서는 동일한 흐름에서 성격 조절 기능만 제외했습니다.
+
+## Key findings
+
+- 사용자 조절 기능이 있는 조건에서 전반적 경험 평가가 더 높게 나타남
+- 특히 Enjoyment 측면에서 차이가 두드러짐
+- 동일한 백본 모델에서도 사용자에게 조절 권한을 주는 방식이 UX에 영향을 줄 수 있음을 확인함
+
+## Ethics
+
+본 사용자 연구는 IRB 승인 후 진행되었으며, 참가자 동의를 바탕으로 데이터를 수집했습니다.
+
+## Repository structure
+
+- `image/`  
+  시스템 화면 및 설명 이미지
+
+- `docs/`  
+  PRD 및 실험 설계 문서
+
+## Recommended entry points
+
+1. `README.md`
+2. `image/LLaPo-chat-main.png`
+3. `image/llapo-chat-flow.png`
+4. `docs/PRDv3_최종.md`
+
+## Research context
+
+LLaPo-chat은 personality vector 기반 기술을 사용자 조절형 서비스로 확장한 프로젝트입니다.  
+기술 구현 자체는 별도 레포인 `personality-vector-llm-control`에서 다루고, 이 레포는 시스템 설계와 UX 검증에 집중합니다.
+
+## Thesis
+
+**One Model Fits You: Controlling Large Language Models through Personality Vector Merging**
+
+## Related technical paper
+
+**Personality Vector: Modulating Personality of Large Language Models by Model Merging**  
+EMNLP 2025 Main Conference  
+[arXiv](https://arxiv.org/abs/2509.19727)
